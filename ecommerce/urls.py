@@ -8,7 +8,7 @@ from django.urls import path
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', include('products.urls')),
+    path('', include('products.urls', namespace='products')),
     path('search/', include("search.urls", namespace='search')),
 ]
 

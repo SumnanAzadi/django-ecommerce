@@ -1,9 +1,10 @@
 # search component
 
-There three apps involved (tags,search,products)
-In products model it is
-class ProductQuerySet(models.query.QuerySet):
-and
-class ProductManager(models.Manager):
+Bootstrap integrated.
 
-And Full tags and search app
+In project directory templates folder added and all the templates have been integrated with bootstrap
+
+Important:
+ecommerce/urls.py => name added
+products/urls.py =>name added
+products/models.py => get_absolute_url function's return changed to "products:detail"

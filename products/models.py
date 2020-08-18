@@ -46,13 +46,13 @@ class ProductQuerySet(models.query.QuerySet):
 
     # for search app
     def search(self, query):
-        lookups = ( Q(title__icontains=query) |
-                    Q(description__icontains=query) |
-                    Q(price__icontains=query) |
-                    Q(tag__title__icontains=query)
-                    )
-                    # tshirt, t-shirt, t shirt, red, green, blue,
-        
+        lookups = (Q(title__icontains=query) |
+                   Q(description__icontains=query) |
+                   Q(price__icontains=query) |
+                   Q(tag__title__icontains=query)
+                   )
+        # tshirt, t-shirt, t shirt, red, green, blue,
+
         # distinct() => if title and description both have the same keyword, without it it will return same result twice.
         return self.filter(lookups).distinct()
 
@@ -86,7 +86,8 @@ class ProductManager(models.Manager):
 
 class Product(models.Model):
     title = models.CharField(max_length=120)
-    slug = models.SlugField(blank=True, unique=True) #Note:blank true is important for generator 
+    # Note:blank true is important for generator
+    slug = models.SlugField(blank=True, unique=True)
     description = models.TextField()
     price = models.DecimalField(decimal_places=2, max_digits=20, default=39.99)
     image = models.ImageField(
@@ -99,12 +100,13 @@ class Product(models.Model):
 
     def get_absolute_url(self):
         # return "/products/{slug}/".format(slug=self.slug)
-        return reverse("detail", kwargs={"slug": self.slug})
+        return reverse("products:detail", kwargs={"slug": self.slug})
 
     def __str__(self):
         return self.title
 
 # we need django signal to produce a slug if not given before saving the object
+
 
 def product_pre_save_receiver(sender, instance, *args, **kwargs):
     if not instance.slug:
