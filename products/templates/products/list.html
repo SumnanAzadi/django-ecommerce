@@ -1,0 +1,4 @@
+{% for obj in object_list %}
+<a href="{{ obj.get_absolute_url }}">{{ obj.title }}</a><br/>
+<!-- <a href="{% url 'detail' slug=obj.slug  %}">{{ obj.title }}</a><br/> -->
+{% endfor %}
