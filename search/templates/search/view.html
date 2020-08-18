@@ -1,0 +1,12 @@
+<div>
+    {% if query %}
+        {% include 'search/snippets/search-form.html' %}
+        Results for <b>{{ query }}</b>
+    {% else %}
+        {% include 'search/snippets/search-form.html' %}
+    {% endif %}
+</div>
+
+<div>
+    {% include 'products/list.html' with instance=obj %}  
+</div>

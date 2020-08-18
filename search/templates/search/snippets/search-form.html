@@ -1,0 +1,5 @@
+<!-- "search:query" mean app_name=search,url name=query (look at n urls.py) -->
+<form method='GET' action='{% url "search:query" %}'>
+    <input type="text" placeholder="Search" name='q' aria-label="Search" value='{{ request.GET.q }}'>
+    <button type="submit">Search</button>
+</form>
