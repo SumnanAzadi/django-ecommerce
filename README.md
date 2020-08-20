@@ -1,10 +1,9 @@
-# search component
+# cart component
 
-Bootstrap integrated.
+Cart module added
+Product app and Cart app are related
 
-In project directory templates folder added and all the templates have been integrated with bootstrap
+In product templates "update-cart.html" added. "detail.html" modified
 
-Important:
-ecommerce/urls.py => name added
-products/urls.py =>name added
-products/models.py => get_absolute_url function's return changed to "products:detail"
+In products/views.py in class ProductDetailSlugView(DetailView):
+def get_context_data(): added

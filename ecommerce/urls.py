@@ -5,11 +5,13 @@ from django.contrib import admin
 from django.conf.urls import url, include
 from django.urls import path
 
+from django.contrib.auth.views import LogoutView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('products.urls', namespace='products')),
     path('search/', include("search.urls", namespace='search')),
+    path('cart/', include("carts.urls", namespace='cart')),
 ]
 
 if settings.DEBUG:
