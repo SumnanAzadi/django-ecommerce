@@ -1,3 +1,6 @@
 h1 {
   color: bisque;
 }
+div#main {
+  display: flex !important;
+}

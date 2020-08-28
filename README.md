@@ -1,10 +1,8 @@
 # cart component
 
-Cart module added.
-Product app and Cart app are related in here.
+Checkout module added. Accounts,addresses,billing,orders are related in here.
+Carts app are connected in this app too.
 
 Added/Updated:
-In product templates "update-cart.html" added. "detail.html" modified.
+In carts templates "checkout.html" added. "checkout-done.html" added, "home.html" modified
 
-In products/views.py in class ProductDetailSlugView(DetailView):
-def get_context_data(): added

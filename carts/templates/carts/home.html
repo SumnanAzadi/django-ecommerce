@@ -33,6 +33,10 @@
       <td colspan="2"></td>
       <td><b>Total</b> {{ cart.total }}</td>
     </tr>
+    <!-- for checkout app modification start here -->
+    <tr>
+      <td></td><td><a href='{% url "cart:checkout" %}'>Checkout</a></td>
+    </tr>
   </tbody>
 </table>
 

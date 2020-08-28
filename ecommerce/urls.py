@@ -6,12 +6,26 @@ from django.conf.urls import url, include
 from django.urls import path
 
 from django.contrib.auth.views import LogoutView
+from accounts.views import login_page, register_page, guest_register_view
+
+from addresses.views import checkout_address_create_view, checkout_address_reuse_view
+
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('products.urls', namespace='products')),
     path('search/', include("search.urls", namespace='search')),
     path('cart/', include("carts.urls", namespace='cart')),
+    # auth start here
+    path('register/', register_page, name='register'),
+    path('login/', login_page, name='login'),
+    path('logout/', LogoutView.as_view(), name='logout'),
+    path('register/guest/', guest_register_view, name='guest_register'),
+    # auth end here
+    path('checkout/address/create/', checkout_address_create_view,
+         name='checkout_address_create'),
+    path('checkout/address/reuse/', checkout_address_reuse_view,
+         name='checkout_address_reuse'),
 ]
 
 if settings.DEBUG:
