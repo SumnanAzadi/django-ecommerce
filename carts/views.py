@@ -1,4 +1,5 @@
 from django.shortcuts import render, redirect
+from django.http import JsonResponse
 
 # For order App start here
 from accounts.forms import LoginForm, GuestForm
@@ -38,13 +39,27 @@ def cart_update(request):
         cart_obj, new_obj = Cart.objects.new_or_get(request)
         if product_obj in cart_obj.products.all():
             cart_obj.products.remove(product_obj)
+            added = False
             # stay in the product page
             # return redirect(product_obj.get_absolute_url())
         else:
             # add the product itself into the instances many to many field(in this case product field).
             cart_obj.products.add(product_obj)
+            added = True
         # get the total Item
         request.session['cart_items'] = cart_obj.products.count()
+
+        # For ajaxifying add to cart
+        if request.is_ajax():
+            print("Ajax request")
+            json_data = {
+                "added": added,
+                "removed": not added,
+                "cartItemCount": cart_obj.products.count()
+            }
+            return JsonResponse(json_data, status=200)  # HttpResponse
+            # return JsonResponse({"message": "Error 400"}, status=400) # Django Rest Framework
+
     return redirect("cart:home")
 
 
