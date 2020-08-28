@@ -26,11 +26,6 @@ $(document).ready(function () {
         }
         var navbarCount = $(".navbar-cart-count");
         navbarCount.text(data.cartItemCount);
-        var currentPath = window.location.href;
-
-        if (currentPath.indexOf("cart") != -1) {
-          refreshCart();
-        }
       },
       error: function (errorData) {
         $.alert({
