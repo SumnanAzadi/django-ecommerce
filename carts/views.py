@@ -63,6 +63,23 @@ def cart_update(request):
     return redirect("cart:home")
 
 
+# refresh the cart using ajax
+def cart_detail_api_view(request):
+    cart_obj, new_obj = Cart.objects.new_or_get(request)
+    products = [{
+        "id": x.id,
+        "url": x.get_absolute_url(),
+        "name": x.title,
+        "price": x.price
+    } for x in cart_obj.products.all()]
+    cart_data = {
+        "products": products,
+        "subtotal": cart_obj.subtotal,
+        "total": cart_obj.total
+    }
+    return JsonResponse(cart_data, status=200)
+
+
 # order app (checkout)
 def checkout_home(request):
     cart_obj, cart_created = Cart.objects.new_or_get(request)

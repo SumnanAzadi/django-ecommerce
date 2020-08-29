@@ -9,7 +9,7 @@ from django.contrib.auth.views import LogoutView
 from accounts.views import login_page, register_page, guest_register_view
 
 from addresses.views import checkout_address_create_view, checkout_address_reuse_view
-
+from carts.views import cart_detail_api_view
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -26,6 +26,7 @@ urlpatterns = [
          name='checkout_address_create'),
     path('checkout/address/reuse/', checkout_address_reuse_view,
          name='checkout_address_reuse'),
+    url('api/cart/', cart_detail_api_view, name='api-cart'),
 ]
 
 if settings.DEBUG:
